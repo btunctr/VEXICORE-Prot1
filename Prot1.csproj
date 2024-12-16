@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80F786F3-956B-458C-87A7-450428CE843E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Prot1</RootNamespace>
+    <AssemblyName>Prot1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Prot1.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>vxlogo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.identitymodel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.7.0.0\lib\net35\microsoft.identitymodel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.32.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Abstractions.6.32.1\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.32.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.JsonWebTokens.6.32.1\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.32.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Logging.6.32.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.32.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Tokens.6.32.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.15.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.106.15.0\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Drawing.Common.7.0.0\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.7.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Channels.5.0.0\lib\net461\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Wpf.Ui, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WPF-UI.2.1.0\lib\net472\Wpf.Ui.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Pages\Ayarlar.xaml.cs">
+      <DependentUpon>Ayarlar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChatKomutları.xaml.cs">
+      <DependentUpon>ChatKomutları.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Desenler.xaml.cs">
+      <DependentUpon>Desenler.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DesenMarketi.xaml.cs">
+      <DependentUpon>DesenMarketi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\KeySuppliers.xaml.cs">
+      <DependentUpon>KeySuppliers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Oyuncular.xaml.cs">
+      <DependentUpon>Oyuncular.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PlayerOverview.xaml.cs">
+      <DependentUpon>PlayerOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRegister.xaml.cs">
+      <DependentUpon>LoginRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MenuButton.xaml.cs">
+      <DependentUpon>MenuButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TagEditor.xaml.cs">
+      <DependentUpon>TagEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Valorant\API\auth.cs" />
+    <Compile Include="Valorant\API\ExtApi\bundles.cs" />
+    <Compile Include="Valorant\API\chat.cs" />
+    <Compile Include="Valorant\API\enums.cs" />
+    <Compile Include="Valorant\API\ExtApi\agents.cs" />
+    <Compile Include="Valorant\API\ExtApi\comptiers.cs" />
+    <Compile Include="Valorant\API\ExtApi\content.cs" />
+    <Compile Include="Valorant\API\ExtApi\levels.cs" />
+    <Compile Include="Valorant\API\ExtApi\maps.cs" />
+    <Compile Include="Valorant\API\ExtApi\weapons.cs" />
+    <Compile Include="Valorant\API\getparty.cs" />
+    <Compile Include="Valorant\API\lcontent.cs" />
+    <Compile Include="Valorant\API\match.cs" />
+    <Compile Include="Valorant\API\mmr.cs" />
+    <Compile Include="Valorant\API\GamePlayer.cs" />
+    <Compile Include="Valorant\API\presence.cs" />
+    <Compile Include="Valorant\API\storefront.cs" />
+    <Compile Include="Valorant\API\username.cs" />
+    <Compile Include="Valorant\API\wallet.cs" />
+    <Compile Include="Valorant\Globals.cs" />
+    <Compile Include="Valorant\Classes.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VexiCoreAPI\api.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Ayarlar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChatKomutları.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Desenler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DesenMarketi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\KeySuppliers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Oyuncular.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PlayerOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MenuButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TagEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\darken.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\settings_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\SkinTiers\Deluxe.png" />
+    <Resource Include="Icons\SkinTiers\Exclusive.png" />
+    <Resource Include="Icons\SkinTiers\Premium.png" />
+    <Resource Include="Icons\SkinTiers\Select.png" />
+    <Resource Include="Icons\SkinTiers\Ultra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vexicore2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\loading_slider1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\MenuIcons\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\darken2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\agents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\kjdarken.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\fadedarken.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\valorant1.png" />
+    <Resource Include="Icons\valorant2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\ranking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\silver1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\dia2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\isabet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\accuracy\body_head.png" />
+    <Resource Include="Icons\accuracy\body_legs.png" />
+    <Resource Include="Icons\accuracy\head_body.png" />
+    <Resource Include="Icons\accuracy\head_legs.png" />
+    <Resource Include="Icons\accuracy\legs_body.png" />
+    <Resource Include="Icons\accuracy\legs_head.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\handgun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\phantom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\skull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\locationpin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\mapsmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\levelcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\breach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\leveltest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\pyramid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\medal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PHIcons\sheriff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\login\login_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\login\login_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\login\login_email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\login\login_verify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Desenler\shoppingcart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Desenler\nightmarket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Desenler\bundleicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hover.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DangerClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Desenler\vp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\MenuIcons\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\MenuIcons\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\incognito.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Navbar\gun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Navbar\group.png" />
+    <Resource Include="Icons\Navbar\homeIcon.png" />
+    <Resource Include="Icons\Navbar\team.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Navbar\shop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Navbar\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Navbar\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\crown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="vxlogo.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,375 @@
+﻿<Page x:Class="Prot1.Forms.PlayerOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Prot1.Forms"
+      mc:Ignorable="d" 
+      Width="798" Height="458"
+      Background="Transparent"
+      Title="PlayerOverview"
+      d:DesignHeight="1500">
+
+    <Page.Resources>
+        <LinearGradientBrush x:Key="FadingBrush" StartPoint="0,1" EndPoint="0,0">
+            <GradientStop Color="#171717" Offset="0"/>
+            <GradientStop Color="#17171700" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type local:AgentsTable_AgentCard}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:AgentsTable_AgentCard}">
+                        <Border Margin="0,5,0,0" BorderBrush="#CBB765" BorderThickness="{TemplateBinding BorderThickness}" Height="40" Background="#272727">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image RenderOptions.BitmapScalingMode="HighQuality" Source="{TemplateBinding AgentImage}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" Height="30" Margin="5,0,0,0" />
+                                    <Grid>
+                                        <TextBlock VerticalAlignment="Top" Margin="12,0,0,0" Text="{TemplateBinding AgentNameText}" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12.5" />
+                                        <TextBlock VerticalAlignment="Bottom" Margin="12,0,0,2" Text="{TemplateBinding MatchCountText}" Foreground="#99abbf" FontFamily="Roboto" FontWeight="Regular" FontSize="10.5" />
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <TextBlock  Margin="0,0,50,0" Text="{TemplateBinding PlaytimeText}" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12" />
+                                    <TextBlock  Margin="0,0,50,0" Text="{TemplateBinding WinRateText}" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12" />
+                                    <TextBlock  Margin="0,0,10,0" Text="{TemplateBinding KDText}" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type local:MapCard}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:MapCard}">
+                        <Border BorderBrush="Gray" BorderThickness="0 0 0 .5" HorizontalAlignment="Center" Height="40">
+                            <Grid>
+                                <Image Source="{TemplateBinding BackgroundImage}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill" Opacity=".25" />
+                                <Label Content="{TemplateBinding MapName}" FontFamily="Roboto" FontWeight="Regular" VerticalAlignment="Center" 
+                                                               HorizontalAlignment="Left" Foreground="#fff" FontSize="12" Margin="5 0 0 0" />
+
+                                <Label Content="{TemplateBinding WinPercentageText}" FontFamily="Roboto Medium" VerticalAlignment="Top" 
+                                                               HorizontalAlignment="Right" Foreground="{TemplateBinding Foreground}" Margin="0 0 10 0" />
+
+                                <Label Content="{TemplateBinding WinLooseText}" FontFamily="Roboto" FontWeight="Bold" VerticalAlignment="Bottom" 
+                                                               HorizontalAlignment="Right" Foreground="#B8B8B8" FontSize="9" Margin="0 0 10 0" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Image Opacity=".6" VerticalAlignment="Bottom" HorizontalAlignment="Left" Source="../Icons/kjdarken.png" Stretch="Fill" Width="278" Height="377"/>
+        <Image Opacity=".6" VerticalAlignment="Bottom" HorizontalAlignment="Right" Source="../Icons/fadedarken.png" Stretch="Fill" Width="231" Height="377"/>
+
+        <DockPanel>
+            <Border Background="{StaticResource FadingBrush}" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="3" />
+
+            <Border BorderThickness="0 0 0 2" BorderBrush="#2C2F33" DockPanel.Dock="Top" Background="#222222" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="50">
+                <Grid>
+                    <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Canvas Height="24" Width="24">
+                                    <Ellipse Width="24" Height="24" Fill="#2C2F33" />
+                                    <Ellipse Width="24" Height="24" Stroke="#fff" StrokeThickness=".8" />
+                                </Canvas>
+                                <Image RenderOptions.BitmapScalingMode="HighQuality"
+                                                   RenderOptions.EdgeMode="Aliased" Source="../Icons/valorant2.png"  VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" Width="14" Height="14" />
+                            </Grid>
+                            <Label x:Name="UsernameLbl" VerticalAlignment="Center" Content="USERNAME" Foreground="#EFEFEF" FontFamily="Roboto" FontSize="13" Margin="5,0,0,0" />
+                            <Border Opacity=".8" Background="#2C2F33" CornerRadius="1.5" VerticalAlignment="Center" Height="auto" HorizontalAlignment="Stretch">
+                                <Label x:Name="Taglinelbl" Content="#TAGLINE" Foreground="Gray" FontSize="10" Margin="-2,0,0,0" FontStyle="Normal" FontWeight="Bold" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <Border Cursor="Hand" x:Name="WarningBorder" BorderBrush="#FFEF1426" BorderThickness="1 1 1 1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" CornerRadius="2" Margin="0 0 15 0">
+                        <Grid>
+                            <Grid Background="#FFEF1426" Opacity=".5" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" />
+
+                            <Image x:Name="WarningImg" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Source="../Icons/warning.png" Width="18" Height="18" Stretch="UniformToFill" Margin="6 0 6 0" />
+                            <Label x:Name="NotfLbl" Visibility="Collapsed" Foreground="#fff" FontFamily="Rajdhani SemiBold" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WarningImg" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NotfLbl" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Border.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WarningImg" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NotfLbl" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+            <Grid DockPanel.Dock="Top">
+                <ScrollViewer Style="{StaticResource NoScrollBar}">
+                    <Grid>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" Width="540" HorizontalAlignment="Right">
+                            <Border Opacity=".91" Background="#222222" 
+                                    VerticalAlignment="Top" Margin="20,20,20,0" BorderBrush="#45494F" 
+                                    BorderThickness="1" CornerRadius="2" Height="Auto" Padding="0,0,0,20">
+                                <DockPanel>
+                                    <Grid DockPanel.Dock="Top" VerticalAlignment="Top">
+                                        <StackPanel Margin="4,6,0,3" Orientation="Horizontal" Width="Auto" HorizontalAlignment="Left">
+                                            <Image Source="../Icons/medal.png" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                                            <Label Margin="5,2,0,0" FontSize="16.5" Content="AJANLAR" Foreground="#EFEFEF" VerticalAlignment="Center" FontFamily="Rajdhani Medium" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid DockPanel.Dock="Top">
+                                        <StackPanel Margin="10,10,10,0" Orientation="Vertical" VerticalAlignment="Top" Height="Auto" >
+                                            <Border Height="20">
+                                                <Grid>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                        <TextBlock Margin="0,0,30,0" Text="Oyun Süresi" Foreground="#99abbf" FontFamily="Roboto" FontWeight="Light" FontSize="8" />
+                                                        <TextBlock Margin="0,0,35,0" Text="Kazanma Oranı" Foreground="#99abbf" FontFamily="Roboto" FontWeight="Light" FontSize="8" />
+                                                        <TextBlock Margin="0,0,15,0" Text="KD" Foreground="#99abbf" FontFamily="Roboto" FontWeight="Light" FontSize="8" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                            <StackPanel Orientation="Vertical" x:Name="AgentsDetailList">
+                                                <Border Margin="0,5,0,0" BorderBrush="#CBB765" BorderThickness="1,0,0,0" Height="40" Background="#272727">
+                                                    <Grid>
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                            <Image RenderOptions.BitmapScalingMode="HighQuality" Source="../PHIcons/Breach.png" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" Height="30" Margin="5,0,0,0" />
+                                                            <Grid>
+                                                                <TextBlock VerticalAlignment="Top" Margin="12,0,0,0" Text="Breach" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12.5" />
+                                                                <TextBlock VerticalAlignment="Bottom" Margin="12,0,0,2" Text="10 Maç" Foreground="#99abbf" FontFamily="Roboto" FontWeight="Regular" FontSize="10.5" />
+                                                            </Grid>
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Width="Auto">
+                                                            <TextBlock Text="10 Saat" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12" Width="Auto" Margin="0,0,30,0" />
+                                                            <TextBlock Text="%43.50" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12" Width="Auto" Margin="0,0,35,0" />
+                                                            <TextBlock Text="1.02" Foreground="#fff" FontFamily="Roboto" FontWeight="Bold" FontSize="12" Width="Auto" Margin="0,0,10,0" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" Width="250" HorizontalAlignment="Left">
+                            <Border Opacity=".91" Background="#222222" 
+                                    VerticalAlignment="Top" Margin="20,20,0,0" BorderBrush="#45494F" 
+                                    BorderThickness="1" CornerRadius="2" HorizontalAlignment="Center" Width="200" Height="200">
+                                <DockPanel>
+                                    <Grid DockPanel.Dock="Top" VerticalAlignment="Top" Height="35">
+                                        <StackPanel Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
+                                            <Image Source="../Icons/ranking.png" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                                            <Label Margin="5,2,0,0" FontSize="16.5" Content="DERECELENDİRME" Foreground="#EFEFEF" VerticalAlignment="Center" FontFamily="Rajdhani Medium" />
+                                        </StackPanel>
+                                        <Separator Foreground="#fff" Width="175" Height=".6" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,32,0,0" />
+                                    </Grid>
+                                    <Grid DockPanel.Dock="Top">
+                                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                                <Image x:Name="RankIcon" Source="../PHIcons/Silver1.png" Width="34" Height="35" HorizontalAlignment="Left"  Margin="10,5,0,0"/>
+                                                <Grid>
+                                                    <Label Content="Derecelendirme" Foreground="Gray" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Roboto" />
+                                                    <Label x:Name="RankText" Content="Gümüş 1" Foreground="#EFEFEF" FontSize="13" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Roboto Black" />
+                                                </Grid>
+                                            </StackPanel>
+
+                                            <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                                                <Image x:Name="PeakRankIcon" Source="../PHIcons/dia2.png" Width="34" Height="35" HorizontalAlignment="Left"  Margin="10,5,0,0"/>
+                                                <Grid>
+                                                    <Label Content="Maximum Derecelendirme" Foreground="Gray" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Roboto" />
+                                                    <Label x:Name="PeakRankText" Content="Elmas 2" Foreground="#EFEFEF" FontSize="13" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Roboto Black" />
+                                                </Grid>
+                                            </StackPanel>
+
+                                            <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                                                <Image x:Name="AvgRankIcon" Source="../PHIcons/silver1.png" Width="34" Height="35" HorizontalAlignment="Left"  Margin="10,5,0,0"/>
+                                                <Grid>
+                                                    <Label Content="Ortalama Derecelendirme" Foreground="Gray" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Roboto" />
+                                                    <Label x:Name="AvgRankText" Content="Gümüş 1" Foreground="#EFEFEF" FontSize="13" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Roboto Black" />
+                                                </Grid>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+                            <Border Opacity=".91" Background="#222222" 
+                                    VerticalAlignment="Top" Margin="20,20,0,0" BorderBrush="#45494F" 
+                                    BorderThickness="1" CornerRadius="2" HorizontalAlignment="Center" Width="200" Height="150">
+                                <DockPanel>
+                                    <Grid DockPanel.Dock="Top" VerticalAlignment="Top" Height="35">
+                                        <StackPanel Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
+                                            <Image RenderOptions.BitmapScalingMode="HighQuality"
+                                                   RenderOptions.EdgeMode="Aliased" Source="../Icons/isabet.png" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                                            <Label Margin="5,2,0,0" FontSize="16.5" Content="İSABET" Foreground="#EFEFEF" VerticalAlignment="Center" FontFamily="Rajdhani Medium" />
+                                        </StackPanel>
+                                        <Separator Foreground="#fff" Width="175" Height=".6" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,33,0,0" />
+                                    </Grid>
+                                    <Grid DockPanel.Dock="Top">
+                                        <DockPanel>
+                                            <Grid DockPanel.Dock="Top" Height="100" VerticalAlignment="Top">
+                                                <Image x:Name="dummyIcon" Source="../Icons/Accuracy/head_body.png"
+                                                   Width="70" Height="80"
+                                                   Stretch="UniformToFill"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                   Margin="3,10,0,0"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   RenderOptions.EdgeMode="Aliased" />
+                                                <StackPanel Margin="0,15,0,0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right" Width="125" Height="80">
+                                                    <Grid Margin="0,-5,0,0">
+                                                        <Label FontFamily="Roboto" Content="KAFA" Foreground="LightGray" FontSize="11" Margin="0,0,0,0" HorizontalAlignment="Left" />
+                                                        <Label x:Name="Accuracy_Head_Text" FontFamily="Roboto" Content="%00.0" Foreground="#fff" FontWeight="SemiBold" FontSize="12" Margin="0,0,25,0" HorizontalAlignment="Right" />
+                                                    </Grid>
+                                                    <Grid Margin="0,-2,0,0">
+                                                        <Label FontFamily="Roboto" Content="GÖVDE" Foreground="LightGray" FontSize="11" Margin="0,0,0,0" HorizontalAlignment="Left" />
+                                                        <Label x:Name="Accuracy_Body_Text" FontFamily="Roboto" Content="%00.0" Foreground="#fff" FontWeight="SemiBold" FontSize="12" Margin="0,0,25,0" HorizontalAlignment="Right" />
+                                                    </Grid>
+                                                    <Grid Margin="0,1,0,0">
+                                                        <Label FontFamily="Roboto" Content="BACAK" Foreground="LightGray" FontSize="11" Margin="0,0,0,0" HorizontalAlignment="Left" />
+                                                        <Label x:Name="Accuracy_Legs_Text" FontFamily="Roboto" Content="%00.0" Foreground="#fff" FontWeight="SemiBold" FontSize="12" Margin="0,0,25,0" HorizontalAlignment="Right" />
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                        </DockPanel>
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+                            <Border Opacity=".91" Background="#222222" 
+                                    VerticalAlignment="Top" Margin="20,20,0,0" BorderBrush="#45494F" 
+                                    BorderThickness="1" CornerRadius="2" HorizontalAlignment="Center" Width="200" Height="240">
+                                <DockPanel>
+                                    <Grid DockPanel.Dock="Top" VerticalAlignment="Top" Height="35">
+                                        <StackPanel Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
+                                            <Image RenderOptions.BitmapScalingMode="HighQuality"
+                                                   RenderOptions.EdgeMode="Aliased"
+                                                   Source="../Icons/handgun.png" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                                            <Label Margin="5,2,0,0" FontSize="12" Content="SIK OYNANAN SİLAHLAR" Foreground="#EFEFEF" VerticalAlignment="Center" FontFamily="Rajdhani Medium" />
+                                        </StackPanel>
+                                        <Separator Foreground="#fff" Width="175" Height=".6" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,33,0,0" />
+                                    </Grid>
+                                    <Grid DockPanel.Dock="Top">
+                                        <StackPanel x:Name="TopWeaponsStackPanel" Orientation="Vertical" Margin="0 5 0 0">
+
+                                            <Border HorizontalAlignment="Center" BorderThickness="0 0 0 .5" BorderBrush="#EFEFEF" Height="60">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Grid>
+                                                        <Image x:Name="TopWeaponIcon1" Source="../PHIcons/phantom.png" Width="90" Height="35" 
+                                                            Stretch="Uniform" Margin="5,0,0,12" />
+                                                        <Label x:Name="TopWeaponName1" Content="Phantom" FontFamily="Roboto" Foreground="#fff"  VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="12" />
+                                                    </Grid>
+                                                    <Grid Margin="12,0,0,0" Height="35">
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                                            <Image Source="../Icons/skull.png" Width="10" Height="10" 
+                                                           RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" 
+                                                            RenderOptions.EdgeMode="Aliased" />
+                                                            <Label x:Name="TopWeaponsKill1" Content="0000" FontFamily="Roboto" Foreground="#fff" FontSize="10" />
+                                                        </StackPanel>
+
+                                                        <Label Content="ÖLDÜRMELER" FontFamily="Roboto" Foreground="DarkGray" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="8" />
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border HorizontalAlignment="Center" BorderThickness="0 0 0 .5" BorderBrush="#EFEFEF" Height="60">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Grid>
+                                                        <Image x:Name="TopWeaponIcon2" Source="../PHIcons/phantom.png" Width="90" Height="35" 
+                                                           Stretch="Uniform"  Margin="5,0,0,12" />
+                                                        <Label x:Name="TopWeaponName2" Content="Phantom" FontFamily="Roboto" Foreground="#fff" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="12" />
+                                                    </Grid>
+                                                    <Grid Margin="12,0,0,0" Height="35">
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                                            <Image Source="../Icons/skull.png" Width="10" Height="10" 
+                                                           RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" 
+                                                            RenderOptions.EdgeMode="Aliased" />
+                                                            <Label x:Name="TopWeaponsKill2" Content="0000" FontFamily="Roboto" Foreground="#fff" FontSize="10" />
+                                                        </StackPanel>
+
+                                                        <Label Content="ÖLDÜRMELER" FontFamily="Roboto" Foreground="DarkGray" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="8" />
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border HorizontalAlignment="Center" BorderThickness="0 0 0 0" BorderBrush="#EFEFEF" Height="60">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Grid>
+                                                        <Image x:Name="TopWeaponIcon3" Source="../PHIcons/sheriff.png" Width="90" Height="35" 
+                                                           Stretch="Uniform" Margin="5,0,0,12" />
+                                                        <Label x:Name="TopWeaponName3" Content="Sheriff" FontFamily="Roboto" Foreground="#fff" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="12" />
+                                                    </Grid>
+                                                    <Grid Margin="12,0,0,0" Height="35">
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                                            <Image Source="../Icons/skull.png" Width="10" Height="10" 
+                                                           RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" 
+                                                            RenderOptions.EdgeMode="Aliased" />
+                                                            <Label x:Name="TopWeaponsKill3" Content="0000" FontFamily="Roboto" Foreground="#fff" FontSize="10" />
+                                                        </StackPanel>
+
+                                                        <Label Content="ÖLDÜRMELER" FontFamily="Roboto" Foreground="DarkGray" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="8" />
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Border>
+
+                                        </StackPanel>
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+
+                            <Border Opacity=".91" Background="#222222" 
+                                    VerticalAlignment="Top" Margin="20,20,0,0" BorderBrush="#45494F" 
+                                    BorderThickness="1" CornerRadius="2" HorizontalAlignment="Center" Width="200" Height="Auto">
+                                <DockPanel>
+                                    <Grid DockPanel.Dock="Top" VerticalAlignment="Top" Height="35">
+                                        <StackPanel Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
+                                            <Image RenderOptions.BitmapScalingMode="HighQuality"
+                                                   RenderOptions.EdgeMode="Aliased" Source="../Icons/locationpin.png" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                                            <Label Margin="5,2,0,0" FontSize="16.5" Content="HARİTALAR" Foreground="#EFEFEF" VerticalAlignment="Center" FontFamily="Rajdhani Medium" />
+                                        </StackPanel>
+                                        <Separator Foreground="#fff" Width="175" Height=".6" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,33,0,0" />
+                                    </Grid>
+                                    <Grid DockPanel.Dock="Top">
+                                        <DockPanel>
+                                            <Grid Margin="0 10 0 0" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                                                <Label Content="Harita" FontFamily="Roboto" FontSize="10" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                                <Label Content="Kazanma Yüzdesi" FontFamily="Roboto" FontSize="10" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                                            </Grid>
+                                            <StackPanel x:Name="mapsStackPanel" Margin="0 3 0 0" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Stretch" Orientation="Vertical">
+
+                                            </StackPanel>
+                                        </DockPanel>
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+
+                            <Grid Height="50" Width="0" Background="Transparent" />
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Page>
